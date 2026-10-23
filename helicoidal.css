@@ -1,0 +1,395 @@
+/* ==========================================================================
+   Bomba positiva helicoidal — extensões sobre styles1.css
+   ========================================================================== */
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 1.6vw, 32px);
+}
+
+.plate-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 6px;
+    background: #fff;
+    padding: 3px;
+}
+
+/* ---- tabela de regra de três ---- */
+
+.rule3-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    margin-bottom: 14px;
+}
+
+.rule3-table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--steel-950);
+}
+
+.rule3-table th {
+    background: var(--steel-800);
+    color: var(--text-mid);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+}
+
+.rule3-table th,
+.rule3-table td {
+    padding: 11px 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rule3-table th:last-child,
+.rule3-table td:last-child {
+    border-right: 0;
+}
+
+.rule3-table td {
+    color: var(--text-hi);
+    white-space: nowrap;
+}
+
+.rule3-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.rule3-table tbody tr:hover {
+    background: rgba(0, 158, 226, 0.05);
+}
+
+.rule3-ref-row {
+    background: rgba(95, 217, 138, 0.08) !important;
+}
+
+.rule3-ref-row td {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.rule3-ref-tag {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.85;
+}
+
+.rule3-table input[type="number"],
+.rule3-table input[type="text"] {
+    width: 100%;
+    min-width: 74px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-hi);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 0;
+}
+
+.rule3-table input[type="number"]::placeholder,
+.rule3-table input[type="text"]::placeholder {
+    color: #55657a;
+    font-weight: 400;
+}
+
+.rule3-table td.rule3-out {
+    color: var(--text-mid);
+    font-weight: 500;
+}
+
+.rule3-table tr.rule3-target-row.is-complete td.rule3-out {
+    color: var(--text-hi);
+}
+
+.rule3-remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(217, 83, 79, 0.35);
+    background: rgba(217, 83, 79, 0.1);
+    color: var(--red);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .12s ease, border-color .12s ease, transform .12s ease;
+}
+
+.rule3-remove-btn:hover {
+    background: rgba(217, 83, 79, 0.22);
+    border-color: var(--red);
+    transform: translateY(-1px);
+}
+
+.add-row-action {
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px 0 12px;
+}
+
+.btn-add-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 30px;
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 158, 226, 0.24);
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-mid);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    opacity: .82;
+    transition: color .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+}
+
+.btn-add-row:hover {
+    background: rgba(0, 158, 226, 0.07);
+    border-color: rgba(0, 158, 226, 0.48);
+    color: var(--text-hi);
+    opacity: 1;
+}
+
+@media (max-width: 560px) {
+    .rule3-table {
+        font-size: 12px;
+    }
+
+    .rule3-table th,
+    .rule3-table td {
+        padding: 9px 8px;
+    }
+}
+
+/* ---- segurança de frequência ---- */
+.hz-safety-note {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 12px auto;
+    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-mid);
+    font-size: 10.5px;
+    line-height: 1.35;
+}
+
+.hz-safety-note strong {
+    color: var(--text-hi);
+    font-weight: 600;
+}
+
+.hz-safety-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    color: var(--text-mid);
+    font-size: 9px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.hz-status-cell {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.hz-status-cell.hz-safe { color: var(--green); }
+.hz-status-cell.hz-low,
+.hz-status-cell.hz-high { color: var(--red); }
+.hz-status-cell.hz-unknown { color: var(--text-mid); }
+
+/* ---- múltiplas bombas helicoidais ---- */
+.helicoidal-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 20px 0 12px;
+}
+.helicoidal-section-title {
+    margin: 0 0 3px;
+    color: var(--text-hi);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+.helicoidal-pumps-container {
+    display: grid;
+    gap: 14px;
+}
+.helicoidal-pump-card {
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    background: rgba(255,255,255,.018);
+    transition: border-color .15s ease, background .15s ease;
+}
+.helicoidal-pump-card.is-selected {
+    border-color: rgba(0,158,226,.34);
+    background: rgba(0,158,226,.035);
+}
+.helicoidal-pump-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 15px;
+}
+.pump-title-wrap { display:flex; align-items:center; gap:10px; }
+.pump-title-wrap strong { display:block; color:var(--text-hi); font-family:var(--font-mono); font-size:13px; }
+.pump-state-text { display:block; margin-top:2px; color:var(--text-mid); font-size:10px; }
+.pump-number {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:8px;
+    background:rgba(0,158,226,.11); color:var(--blue, #009ee2);
+    font-family:var(--font-mono); font-weight:700; font-size:12px;
+}
+.pump-head-actions { display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+.calc-toggle {
+    display:inline-flex; align-items:center; gap:7px; padding:6px 9px;
+    border:1px solid rgba(0,158,226,.24); border-radius:7px;
+    color:var(--text-mid); font-family:var(--font-mono); font-size:10.5px; cursor:pointer;
+}
+.calc-toggle input { accent-color:#009ee2; }
+.btn-remove-pump {
+    min-height:30px; padding:5px 9px; border-radius:7px;
+    border:1px solid rgba(217,83,79,.28); background:rgba(217,83,79,.06);
+    color:var(--red); font-family:var(--font-mono); font-size:10px; cursor:pointer;
+}
+.helicoidal-data-grid {
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:12px;
+}
+.pump-reference-readout { margin-top:12px; }
+.multi-pump-summary { margin-top:14px; }
+.target-help { margin:-2px 0 14px; color:var(--text-mid); font-size:11px; line-height:1.55; }
+.target-help strong { color:var(--text-hi); }
+.targets-container { display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; }
+.target-card {
+    display:grid; grid-template-columns:auto 112px auto; align-items:center; gap:8px;
+    width:fit-content; max-width:100%; padding:7px 8px; border:1px solid rgba(255,255,255,.08); border-radius:8px;
+    background:rgba(255,255,255,.018);
+}
+.target-label { color:var(--text-mid); font-family:var(--font-mono); font-size:10.5px; font-weight:600; white-space:nowrap; }
+.target-input-wrap { min-width:0; width:112px; min-height:34px; }
+.target-input-wrap input { min-height:34px !important; padding:5px 8px !important; font-size:12px !important; }
+.target-input-wrap .unit-tag { padding:0 8px; font-size:9.5px; }
+.results-table { min-width:760px; }
+.result-pump-name { font-weight:700; }
+.result-type {
+    display:inline-flex; padding:3px 6px; border-radius:5px; font-size:9px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase;
+}
+.result-type.is-ref { color:var(--green); background:rgba(95,217,138,.09); }
+.result-type.is-target { color:#64c8f2; background:rgba(0,158,226,.09); }
+.empty-result { text-align:center; color:var(--text-mid) !important; padding:22px !important; }
+
+@media (max-width: 900px) {
+    .helicoidal-data-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 620px) {
+    .helicoidal-section-head, .helicoidal-pump-head { align-items:flex-start; flex-direction:column; }
+    .pump-head-actions { justify-content:flex-start; }
+    .helicoidal-data-grid { grid-template-columns:1fr; }
+}
+
+
+/* Campos compactos nas bombas — mesma escala visual do nome da máquina */
+.helicoidal-pump-card .field {
+    margin-bottom: 10px;
+}
+.helicoidal-pump-card .field-head {
+    margin-bottom: 6px;
+}
+.helicoidal-pump-card .field-head label {
+    font-size: 12px;
+    letter-spacing: .01em;
+}
+.helicoidal-pump-card .field-hint {
+    font-size: 9.5px;
+    opacity: .72;
+}
+.helicoidal-pump-card .num-input-row {
+    min-height: 38px;
+    border-radius: 8px;
+}
+.helicoidal-pump-card input[type="text"],
+.helicoidal-pump-card input[type="number"] {
+    min-height: 38px;
+    padding: 7px 11px;
+    font-size: 13px;
+    line-height: 1.2;
+}
+.helicoidal-pump-card .unit-tag {
+    padding: 0 11px;
+    font-size: 10px;
+}
+.helicoidal-pump-card .pump-reference-readout {
+    margin-top: 8px;
+}
+
+
+/* Feedback operacional compacto — válido para os três painéis */
+.result-feedback {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  width: min(100%, 440px); margin: 16px auto 20px; padding: 12px 16px;
+  border: 1px solid rgba(148,163,184,.18); border-radius: 12px;
+  background: rgba(148,163,184,.055); text-align: center;
+}
+.result-feedback:has(.status-chip[style*="display: none"]):has(.status-note:empty) {display:none}
+.result-feedback .status-chip {margin:0; padding:4px 10px; font-size:11px; letter-spacing:.025em; border:0; box-shadow:none; background:transparent}
+.result-feedback .status-chip .dot {width:7px;height:7px;box-shadow:none;flex-shrink:0}
+.result-feedback .status-chip.status-ok {color:#70dba0}
+.result-feedback .status-chip.status-bad {color:#f3ac78}
+.result-feedback .status-chip.status-bad .dot {background:#f3ac78}
+.result-feedback .status-note {
+  all: unset; display:block; max-width:390px; font: 400 12px/1.55 system-ui,sans-serif;
+  color:#b6c2d0; text-align:center; overflow-wrap:anywhere;
+}
+.result-feedback .status-note:empty {display:none}
+.result-feedback .status-note::before,.result-feedback .status-note::after {content:none;display:none}
+.result-feedback:has(.status-chip.status-ok) {border-color:rgba(112,219,160,.20);background:rgba(112,219,160,.045)}
+.result-feedback:has(.status-chip.status-bad) {border-color:rgba(243,172,120,.20);background:rgba(243,172,120,.04)}
+@media(max-width:600px){.result-feedback{padding:10px 12px;margin:12px auto 16px}}
